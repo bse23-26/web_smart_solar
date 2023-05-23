@@ -1,0 +1,4 @@
+#,Field,Type,Null,Key,Default,Extra
+1,key,varchar(255),NO,PRI,,""
+2,owner,varchar(255),NO,"",,""
+3,expiration,int,NO,"",,""

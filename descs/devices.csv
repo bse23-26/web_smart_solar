@@ -1,0 +1,8 @@
+#,Field,Type,Null,Key,Default,Extra
+1,id,bigint unsigned,NO,PRI,,auto_increment
+2,device_uuid,char(36),NO,UNI,,""
+3,location,varchar(255),NO,"",,""
+4,user_id,bigint unsigned,NO,MUL,,""
+5,last_seen,timestamp,NO,"",,""
+6,created_at,timestamp,YES,"",,""
+7,updated_at,timestamp,YES,"",,""

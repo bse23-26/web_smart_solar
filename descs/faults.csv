@@ -1,0 +1,9 @@
+#,Field,Type,Null,Key,Default,Extra
+1,id,bigint unsigned,NO,PRI,,auto_increment
+2,device_id,bigint unsigned,NO,MUL,,""
+3,description,longtext,NO,"",,""
+4,is_resolved,tinyint(1),NO,"",0,""
+5,tech_id,bigint unsigned,YES,MUL,,""
+6,time_occurred,timestamp,NO,"",,""
+7,created_at,timestamp,YES,"",,""
+8,updated_at,timestamp,YES,"",,""
