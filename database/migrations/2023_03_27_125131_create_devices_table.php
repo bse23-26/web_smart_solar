@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->uuid('device_uuid')->unique();
-            $table->string('location');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->timestamp('last_seen');
+            $table->string('description');
+            $table->string('location')->nullable();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users');
+            $table->timestamp('last_seen')->nullable();
             $table->timestamps();
         });
     }

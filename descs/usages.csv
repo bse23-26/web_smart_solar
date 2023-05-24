@@ -1,8 +1,0 @@
-#,Field,Type,Null,Key,Default,Extra
-1,id,bigint unsigned,NO,PRI,,auto_increment
-2,device_id,bigint unsigned,NO,MUL,,""
-3,volts_generated,"decimal(8,2)",NO,"",,""
-4,volts_used,"decimal(8,2)",NO,"",,""
-5,volts_remaining,"decimal(8,2)",NO,"",,""
-6,created_at,timestamp,YES,"",,""
-7,updated_at,timestamp,YES,"",,""

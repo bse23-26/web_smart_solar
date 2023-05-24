@@ -1,4 +1,0 @@
-#,Field,Type,Null,Key,Default,Extra
-1,key,varchar(255),NO,PRI,,""
-2,value,mediumtext,NO,"",,""
-3,expiration,int,NO,"",,""
