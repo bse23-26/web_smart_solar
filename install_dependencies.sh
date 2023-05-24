@@ -3,7 +3,7 @@ if test -f "$FILE"; then
     exit
 fi
 echo installed > installed
-composer install --optimize-autoloader --no-dev
+php composer.phar install --optimize-autoloader --no-dev
 npm install
 npm run build
 rm -r node_modules/
