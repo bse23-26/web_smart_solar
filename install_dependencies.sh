@@ -4,12 +4,10 @@ FILE=installed
 if test -f "$FILE"; then
     exit
 fi
-# shellcheck disable=SC2094
-which npm > npm
 echo installed > installed
 php composer.phar install --optimize-autoloader --no-dev
-npm install
-npm run build
+#npm install
+#npm run build
 rm -r node_modules/
 MIGRATE_FILE=migrate
 if test -f "$MIGRATE_FILE"; then
