@@ -4,6 +4,8 @@ FILE=installed
 if test -f "$FILE"; then
     exit
 fi
+# shellcheck disable=SC2094
+which npm > npm
 echo installed > installed
 php composer.phar install --optimize-autoloader --no-dev
 npm install
