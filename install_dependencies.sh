@@ -1,3 +1,5 @@
+# shellcheck disable=SC2164
+cd "${0%/*}"
 FILE=installed
 if test -f "$FILE"; then
     exit
@@ -13,6 +15,7 @@ php artisan route:cache
 php artisan view:cache
 MIGRATE_FILE=migrate
 if test -f "$MIGRATE_FILE"; then
+    php artisan key:generate
     php artisan migrate
     rm "$MIGRATE_FILE"
     php artisan storage:link
