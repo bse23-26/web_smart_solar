@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Device;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,6 +46,23 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * @throws ValidationException
+     */
+    public function apiStore(LoginRequest $request): \Illuminate\Http\Response
+    {
+        $request->authenticate();
+        $user = $request->user();
+        $token = $user->createToken('login');
+
+        $device = Device::where('user_id',$user->id)->first();
+
+        $res = json_decode(json_encode($user), TRUE);
+        $res['deviceId'] = $device->device_uuid;
+        $res['token'] = $token->plainTextToken;
+        return Response($res);
+    }
+
+    /**
      * Destroy an authenticated session.
      *
      * @param Request $request
@@ -59,5 +77,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+    public function apiDestroy(Request $request): \Illuminate\Http\Response
+    {
+        $request->user()->currentAccessToken()->delete();
+        return Response(['token'=>null]);
     }
 }

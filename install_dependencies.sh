@@ -5,6 +5,7 @@ if test -f "$FILE"; then
     exit
 fi
 echo installed > installed
+python --version >> installed
 php composer.phar install --optimize-autoloader --no-dev
 npm install
 npm run build

@@ -36,9 +36,10 @@ export default function Login({ status, canResetPassword }) {
       {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
       <div className="d-flex justify-content-end align-items-baseline mt-2">
-        <p className="me-3" style={{fontSize: "25px"}}>Login or </p><Link href={route('register')}>
-        <button type="submit" className="btn btn-dark">Register</button>
-        </Link>
+        <p className="me-3" style={{fontSize: "25px"}}>Login</p>
+        {/*<Link href={route('register')}>*/}
+        {/*<button type="submit" className="btn btn-dark">Register</button>*/}
+        {/*</Link>*/}
       </div>
 
       <form onSubmit={submit}>

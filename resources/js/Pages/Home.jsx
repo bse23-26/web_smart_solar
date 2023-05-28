@@ -20,9 +20,9 @@ export default function Home(props) {
               <button type="button" className="btn btn-dark ml-4">Log in</button>
             </Link>
             &nbsp;&nbsp;
-            <Link href={route('register')}>
-              <button type="button" className="btn btn-dark ml-4">Register</button>
-            </Link>
+            {/*<Link href={route('register')}>*/}
+            {/*  <button type="button" className="btn btn-dark ml-4">Register</button>*/}
+            {/*</Link>*/}
           </>
         )}
       </div>
