@@ -52,6 +52,8 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $user = $request->user();
+        $user->fcmToken = $request->fcmToken;
+        $user->save();
         $token = $user->createToken('login');
 
         $device = Device::where('user_id',$user->id)->first();

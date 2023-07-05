@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('faults', function (Blueprint $table) {
             $table->id();
             $table->foreignId('device_id')->references('id')->on('devices');
+            $table->string('subject');
             $table->longText('description');
             $table->boolean('is_resolved')->default(false);
             $table->foreignId('tech_id')->nullable()->references('id')->on('users');
-            $table->timestamp('time_occurred');
             $table->timestamps();
         });
     }

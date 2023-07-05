@@ -16,15 +16,7 @@ class Fault extends Model
         'description',
         'is_resolved',
         'tech_id',
-        'time_occurred'
+        'subject'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'time_occurred' => 'datetime',
-    ];
 }

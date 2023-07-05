@@ -1,16 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-//use Kreait\Firebase\Factory;
-//use Kreait\Firebase\Messaging\CloudMessage;
-//use Kreait\Firebase\Messaging\Notification;
+use App\Http\Controllers\Helpers\SendPushNotifications;
 
 class NotificationController extends Controller
 {
+    use SendPushNotifications;
     public function store(Request $request): Response
     {
         $user = $request->user();
@@ -19,37 +18,31 @@ class NotificationController extends Controller
         return Response('successful');
     }
 
-    public function send(Request $request): RedirectResponse
+    public function send(Request $request): Response
     {
-        $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+        $request->validate([
+            'title'=>'required|string',
+            'body'=>'required|string'
+        ]);
 
-        $SERVER_API_KEY = env('FCM_SERVER_KEY');
+        $firebaseToken = User::whereNotNull('fcmToken')->pluck('fcmToken')->all();
 
-        $data = [
-            "registration_ids" => $firebaseToken,
-            "notification" => [
-                "title" => $request->title,
-                "body" => $request->body,
-            ]
-        ];
-        $dataString = json_encode($data);
+        $this->sendNotifiication($request->title, $request->body, $firebaseToken);
 
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-        $response = curl_exec($ch);
-
-        return back()->with('success', 'Notification send successfully.');
+        return Response(['success' => 'Notification sent successfully.']);
     }
+
+    public function sendToClient(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'subject'=>'required|string',
+            'description'=>'required|string'
+        ]);
+
+        $firebaseToken = User::find($request->id)->fcmToken;
+
+        $this->sendNotification($request->subject, $request->description, [$firebaseToken]);
+        return to_route('notify.withMessage',['id'=>$request->id, 'message'=>'Notification sent successfully.']);
+    }
+
 }

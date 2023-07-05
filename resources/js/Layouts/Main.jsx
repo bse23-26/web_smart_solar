@@ -19,7 +19,7 @@ export default function Main({title, children}) {
               color: "white"
             }}>
               <span className="imgBx">
-                <img src="images/customer01.jpg" alt="" width="40px" height="40px" style={{borderRadius: "50px", overflow: 'hidden'}}/>
+                <img src="/images/customer01.jpg" alt="" width="40px" height="40px" style={{borderRadius: "50px", overflow: 'hidden'}}/>
               </span> &nbsp;
               <span style={{fontSize: "20px"}}>{auth.user.name}</span>
               <br/>
@@ -38,7 +38,7 @@ export default function Main({title, children}) {
             <br/>
 
             <li>
-              <InertiaLink href="dashboard">
+              <InertiaLink href="/dashboard">
                     <span className="icon">
                       <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -47,20 +47,20 @@ export default function Main({title, children}) {
             </li>
 
             <li>
-              <InertiaLink href="messages">
+              <InertiaLink href="/faults">
                         <span className="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                <span className="title">Messages</span>
+                <span className="title">Faults</span>
               </InertiaLink>
             </li>
 
             <li>
-              <InertiaLink href="reports">
+              <InertiaLink href="/devices">
                         <span className="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                          <img src="/images/logo.png" height="35px" width="40px" alt=""/>
                         </span>
-                <span className="title">Reports</span>
+                <span className="title">Devices</span>
               </InertiaLink>
             </li>
           </ul>

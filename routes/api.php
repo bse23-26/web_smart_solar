@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'apiDestroy'])->name('api.logout');
     Route::post('/fault', [FaultController::class, 'store'])->name('faults.store');
     Route::post('/device_token', [NotificationController::class, 'store'])->name('token.store');
+    Route::get('/notify', [NotificationController::class, 'send'])->name('notify.send');
 });
 
 Route::post('login', [AuthenticatedSessionController::class, 'apiStore'])->name('api.login');

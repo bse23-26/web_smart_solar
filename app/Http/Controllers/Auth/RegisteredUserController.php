@@ -67,7 +67,8 @@ class RegisteredUserController extends Controller
             'tel' => 'required|string|max:15|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'deviceId' => 'required|uuid|exists:devices,device_uuid',
-            'location' => 'required|string'
+            'location' => 'required|string',
+            'fcmToken' => 'required|string'
         ];
 
         $messages = [
@@ -86,6 +87,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'tel' => $request->tel,
             'user_type' => 'customer',
+            'fcmToken' => $request->fcmToken,
             'password' => Hash::make($request->password),
         ]);
 

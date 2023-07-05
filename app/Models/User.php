@@ -26,6 +26,7 @@ class User extends Authenticatable
         'tel',
         'user_type',
         'password',
+        'fcmToken',
         'created_at',
         'updated_at',
         'deleted_at',

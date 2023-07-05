@@ -40,7 +40,7 @@ const Dashboard = ({user_count, device_count, fault_count}) => {
         </div>
       </div>
 
-      <div className="details" style={{display: 'block'}}>
+      <div className="details" style={{display: 'block'}} hidden="hidden">
         <div className="recentOrders" style={{width: "100%"}}>
           <div className="cardHeader">
             <h2>Recent reports</h2>
